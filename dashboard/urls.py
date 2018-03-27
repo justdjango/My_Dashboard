@@ -4,6 +4,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^note/', include('notepad.urls', namespace='notes')),
-
+    url(r'^notes/', include('notepad.urls', namespace='notes'))
 ]

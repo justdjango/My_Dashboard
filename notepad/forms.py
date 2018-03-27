@@ -2,7 +2,7 @@ from django import forms
 
 from .models import Note
 
-class NoteForm(forms.ModelForm):
+class NoteModelForm(forms.ModelForm):
 	class Meta:
 		model = Note
-		fields = ['title','image','url']
+		fields = ['title','url','image']

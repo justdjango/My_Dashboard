@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
 </head>
 <body>
-	<form method="POST" enctype="multipart/form-data">
+	<form method="POST" action="." enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<input type="submit" name="submit">

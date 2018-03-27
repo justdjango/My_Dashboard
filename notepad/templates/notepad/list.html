@@ -8,7 +8,7 @@
 	<ul>
 		{% for object in object_list %}
 			<li>
-				{{ object }} <small><a href="{{ object.get_delete_url }}">Delete</a></small>			
+				{{ object }} <small><a href="{{ object.get_delete_url }}">Delete</a></small><br><small><a href="{{ object.get_update_url }}">Update</a></small>			
 			</li>
 		{% endfor %}
 	</ul>

@@ -1,12 +1,5 @@
-from django.db import models
-
 from django.conf import settings
-
-# Create your models here.
-
-# model -- headline ( title, image, url )
-
-# model -- userprofile ( user, last_scrape )
+from django.db import models
 
 
 class Headline(models.Model):

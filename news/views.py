@@ -14,7 +14,15 @@ def scrape():
 
 	soup = BeautifulSoup(content, "html.parser")
 
-	columns = soup.find_all('div',{'class':'curation-module__zone'}) # returns a list
-	print(len(columns))
+	posts = soup.find_all('div',{'class':'curation-module__item'}) # returns a list
 
+	for i in posts:
+		link = i.find_all('a',{'class':'js_curation-click'})[1]
+		image_source = i.find('img',{'class':'featured-image'})['data-src']
+		print(link.text)
+		print(image_source)
 scrape()
+
+
+
+

@@ -14,5 +14,21 @@
 		</form>
 		{% endif %}
 	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 text-center">
+			{% for object in object_list %}
+			<div class="card text-center" style="width: 100%;">
+				<div class="card-body">
+				<img class="card-img-top" src="{{ object.image.url }}">
+				<h5 class="card-title"><a href="{{ object.url }}">{{ object.title }}</a></h5>
+				</div>
+			</div>
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

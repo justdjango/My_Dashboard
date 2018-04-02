@@ -74,5 +74,5 @@ def scrape(request):
 		new_headline.image = local_filename
 		new_headline.save()
 
-	return redirect('/')
+	return redirect('/home/')
 

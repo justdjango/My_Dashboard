@@ -2,11 +2,22 @@ from django.shortcuts import render, redirect
 
 import requests
 requests.packages.urllib3.disable_warnings()
-from datetime import timedelta, timezone, datetime
+
 from bs4 import BeautifulSoup
+from datetime import timedelta, timezone, datetime
 import os
 import shutil
+
 from .models import Headline, UserProfile
+
+
+def news_list(request):
+	headlines = Headline.objects.all()
+	context = {
+		'object_list': headlines
+	}
+	return render(request, "news/home.html", context)
+
 
 def scrape(request):
 	user_p = UserProfile.objects.filter(user=request.user).first()
@@ -27,12 +38,11 @@ def scrape(request):
 		link = i.find_all('a',{'class':'js_curation-click'})[1]['href']
 		title = i.find_all('a',{'class':'js_curation-click'})[1].text
 		image_source = i.find('img',{'class':'featured-image'})['data-src']
-		print(link)
-		print(title)
-		print(image_source)
 
+		# stackoverflow solution
+
+		media_root = '/Users/matthew/Downloads/dashboard/media_root'
 		if not image_source.startswith(("data:image", "javascript")):
-			media_root = '/Users/matthew/Downloads/dashboard/media_root'
 			local_filename = image_source.split('/')[-1].split("?")[0]
 			r = session.get(image_source, stream=True, verify=False)
 			with open(local_filename, 'wb') as f:
@@ -42,15 +52,14 @@ def scrape(request):
 			current_image_absolute_path = os.path.abspath(local_filename)
 			shutil.move(current_image_absolute_path, media_root)
 
-			new_headline = Headline()
-			new_headline.title = title
-			new_headline.url = link
-			new_headline.image = local_filename
-			new_headline.save()
 
+		# end of stackoverflow
+
+		new_headline = Headline()
+		new_headline.title = title
+		new_headline.url = link
+		new_headline.image = local_filename
+		new_headline.save()
 
 	return redirect('/')
-
-
-
 

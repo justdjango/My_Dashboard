@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<div class="jumbotron">
+		<p>Your next scrape is in {{ next_scrape }} hours</p>
+		<h1>Welcome to your dashboard</h1>
+		<form method="POST" action="{% url 'scrape' %}">
+			{% csrf_token %}
+			<button type="submit" class="btn btn-primary">Get my morning news</button>
+		</form>
+	</div>
+</body>
+</html>

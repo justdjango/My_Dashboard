@@ -2,57 +2,56 @@
 <html>
 <head>
 	<title></title>
+
 </head>
 <body>
 	<div class="row">
-		<div id="articles" style="width:1400px; height:800px;"></div>
-	</div>
-	<p>test here</p>
+        <div id="articles" style="width:1400px;height:800px;"></div>
+    </div>
 	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			var endpoint = '/api/chart/data'
-			var articleData = articleLabels = []
 
-			$.ajax({
-				method: "GET",
-				url: endpoint,
-				success: function(data){
-					articleLabels = data.article_labels
-					articleData = data.article_data
-					articleChart()
-				}
-				error: function(error_data){
-					console.log("error")
-				}
-			})
+        var endpoint = '/api/chart/data'
+		var articleData = articleLabels = []
 
-			function articleChart(){
-				var data = [{
-					x: articleData,
-					y: articleLabels,
-					type: 'bar',
-					orientation: 'h',
-					marker: {
-						color: "#23b7e5",
-					},
-				}];
-				var layout = {
-					title: "Number of Articles per Company",
-					margin: {l:200},
-				};
-			
+		$.ajax({
+		    method: "GET",
+		    url: endpoint,
+		    success: function(data){
+		        articleLabels = data.article_labels
+		        articleData = data.article_data
+		        articleChart()
 
-			
-			Plotly.newPlot('articles', data, layout);
-			
-			}
+		    },
+		    error: function(error_data){
+		        console.log("error")
+		    },
+		})
+
+		function articleChart(){
+		    var data = [{
+		        x: articleData,
+		        y: articleLabels,
+		        type: 'bar',
+		        orientation: 'h',
+		        marker: {
+		            color: '#23b7e5',
+		        },
+		    }];
+		    var layout = {
+		        title: 'Number of Articles per Company',
+		        margin: {l:200},
+		    };
+
+		    Plotly.newPlot('articles', data, layout);
+		}
 
 		})
 
 	</script>
 
 </body>
-</html>
+</html> -->

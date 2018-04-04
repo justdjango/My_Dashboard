@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.http.response import HttpResponse
 # Create your views here.
 
 from rest_framework.response import Response
@@ -31,3 +31,29 @@ class ChartData(APIView):
         }
     
         return Response(data)
+
+
+
+### dash ###
+
+def dash(request, **kwargs):
+    return HttpResponse(dispatcher(request))
+
+
+
+def dash_ajax(request):
+    return HttpResponse(dispatcher(request), content_type='application/json')
+
+
+
+
+
+
+
+
+
+
+
+
+
+

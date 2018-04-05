@@ -11,27 +11,6 @@ import shutil
 from .models import Headline, UserProfile
 
 
-def news_list(request):
-	# user can only scrape once every 24 hours
-	user_p = UserProfile.objects.filter(user=request.user).first()
-	now = datetime.now(timezone.utc)
-	time_difference = now - user_p.last_scrape
-	time_difference_in_hours = time_difference / timedelta(minutes=60)
-	next_scrape = 24 - time_difference_in_hours
-	if time_difference_in_hours <= 24:
-		hide_me = True
-	else:
-		hide_me = False
-
-	headlines = Headline.objects.all()
-	context = {
-		'object_list': headlines,
-		'hide_me': hide_me,
-		'next_scrape': math.ceil(next_scrape)
-	}
-	return render(request, "news/home.html", context)
-
-
 def scrape(request):
 	user_p = UserProfile.objects.filter(user=request.user).first()
 	user_p.last_scrape = datetime.now(timezone.utc)

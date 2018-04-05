@@ -19,7 +19,9 @@
 
 	<div class="container">
 		<div class="row">
+
 			<div class="col-sm-3 text-center">
+				<h3>News</h3>
 			{% for object in object_list %}
 			<div class="card text-center" style="width: 100%;">
 				<div class="card-body">
@@ -29,8 +31,57 @@
 			</div>
 			{% endfor %}
 			</div>
+
+			<div class="col-sm-3 text-center">
+				<h3>Notepad</h3>
+				{% for note in notes_list %}
+				<div class="card text-center" style="width: 100%;">
+				  {% if note.image %}
+				  <img class="card-img-top" src="{{ note.image.url }}" alt="Card image cap">
+				  {% endif %}
+				  <div class="card-body">
+				    <h5 class="card-title">{{ note.title }}</h5>
+				    {% if note.url %}
+				    <a href="{{ note.url }}">Link</a>
+				    {% endif %}
+				  </div>
+				  <div>
+					  <span><a href="{{ note.get_update_url }}"><i class="fas fa-pen-alt"> Edit</i></a></span>
+					  <span><a href="{{ note.get_delete_url }}"><i class="fas fa-trash-alt"> Delete</i></a></span>
+				  </div>
+				</div>
+				<hr>
+				{% endfor %}
+				<a id="dropdown-toggle" data-toggle="collapse" href="#createnote" role="button" aria-expanded="false" aria-controls="collapseExample">Add Note</a>
+				
+
+				<div class="collapse" id="createnote">
+					<form method="POST" action="." enctype="multipart/form-data">
+						{% csrf_token %}
+						{{ form.as_p }}
+						<input class="btn btn-warning" type="submit" name="createnote">
+					</form>
+				</div>
+
+			</div>
+
+
 		</div>
 	</div>
 
+
+	<script
+	src="http://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
 </body>
 </html>
+
+
+
+
+

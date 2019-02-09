@@ -26,6 +26,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'rest_framework',
 
     'finance',
@@ -113,15 +117,19 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static_in_env'),
+    os.path.join(BASE_DIR, 'static_in_env'),
 ]
-
 VENV_PATH = os.path.dirname(BASE_DIR)
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
+
+# Django Allauth
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1

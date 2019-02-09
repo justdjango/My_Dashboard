@@ -1,5 +1,5 @@
-env
-**/*.pyc
-**/__pycache__
+env/
+*.pyc 
+dashboard/__pycache__/*
 **/migrations
 db.sqlite3

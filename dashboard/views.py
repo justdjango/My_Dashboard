@@ -1,16 +1,14 @@
-from datetime import timedelta, timezone, datetime
 import math
-
+from datetime import timedelta, timezone, datetime
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-
-from news.models import Headline, UserProfile
-
 from notepad.forms import NoteModelForm
 from notepad.models import Note
+from news.models import Headline, UserProfile
 
-
+@login_required
 def home(request):
-	user_p = UserProfile.objects.filter(user=request.user).first()
+	user_p = UserProfile.objects.get(user=request.user)
 	now = datetime.now(timezone.utc)
 	time_difference = now - user_p.last_scrape
 	time_difference_in_hours = time_difference / timedelta(minutes=60)

@@ -16,7 +16,8 @@ urlpatterns = [
     path('companies/', company_article_list, name='companies'),
     path('api/chart/data/', ChartData.as_view(), name='api-chart-data'),
     path('dash/', dash),
-    path('_dash', dash_ajax)
+    path('_dash', dash_ajax),
+    path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:

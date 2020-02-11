@@ -9,7 +9,7 @@ dash-core-components==0.43.0
 dash-html-components==0.13.5
 dash-renderer==0.17.0
 decorator==4.3.2
-Django==2.1.5
+Django==2.2.10
 django-rest-framework==0.1.0
 djangorestframework==3.9.1
 Flask==1.0.2
